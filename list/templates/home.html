@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="width:50%;margin:auto">
+    <h1>Hello {{user.username}},Welcome to To Do List</h1>
+    <h3>It is very helpful for managing and completing work</h3>
+    {% if request.user.is_authenticated %}
+    <small> You have {{count}} incomplete task or tasks</small>
+    {% endif %}
+</div>
+{% endblock content %}

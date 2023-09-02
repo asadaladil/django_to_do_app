@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="width:80%;margin:auto;">
+    <h1>Here is the list of incomplete Tasks</h1>
+    {% if data %}
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority Level</th>
+            <th scope="col">Created Time</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            {% if item.is_completed is not True%}
+            <tr>
+                <th scope="row">{{item.id}} </th>
+                <td>{{item.title}} </td>
+                <td>{{item.description}} </td>
+                <td>Incomplete</td>
+                <td>{{item.level}} </td>
+                <td>{{item.created_time}}
+                <td><a href="{% url 'deletepage' id=item.id %}" class="btn btn-danger btn-sm">Delete</a>    <a href="{% url 'editpage' id=item.id %}"  class="btn btn-warning btn-sm">Edit</a>     <a href="{% url 'completepage' id=item.id %}"  class="btn btn-success btn-sm">Complete</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h3>No incomplete Task</h3>
+      {% endif %}
+</div>
+{% endblock content %}
+

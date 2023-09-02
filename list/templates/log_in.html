@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div style="width:50%;margin:auto">
+<h3>Log in</h3><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% comment %} {% for fm in form %}
+        {{fm.label_tag | crispy }} {{fm}}  <br> <br>
+        {% endfor %} {% endcomment %}
+        {{form | crispy }}
+        <button class ="btn btn-info",type="submit">Log In</button>
+    </form>
+    <small>Don't have an account.</small>
+    <a href=" {% url 'signup' %} " class="text-decoration-none">Sign up</a>
+</div>
+{% endblock content %}
