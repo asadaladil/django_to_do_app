@@ -6,13 +6,17 @@ from django.contrib.auth import authenticate,login,logout
 from django.utils import timezone
 
 # Create your views here.
-x=ToDoModel.objects.all()
-cnt=0
-for i in x:
-    if i.is_completed is False:
-        cnt+=1
+
+
+def home2(request):
+    return render(request,'home2.html')
 
 def home(request):
+    x=ToDoModel.objects.all()
+    cnt=0
+    for i in x:
+        if i.is_completed is False:
+            cnt+=1
     return render(request,'home.html',{'count':cnt})
 
 def sign_up(request):
